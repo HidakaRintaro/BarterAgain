@@ -1,4 +1,6 @@
 <?php
+require_once '../func.php';
+require_once '../const.php';
 
 $class = 'none';
 $form_name = [
