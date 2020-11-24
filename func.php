@@ -14,7 +14,7 @@ function flash($msg) {
  * 
  * エラー発生時、連想配列として添字がinputのnameになった配列を返す
  * エラーが無い時はNULLを返す。
- * エラーチェックの値は、空白(blank)、数値(numeric)、文字列長(digit)、max値(max_val)、min値(min_val)、メール形式(email)、一致確認(match)
+ * エラーチェックの値は、空白(blank)、数値(numeric)、文字列長(digit)、max値(max_val)、min値(min_val)、メール形式(email)、一致(match)、カタカナ(kana)
  * 
  * @param array $data 1次元目の添字をinputのname、2次元目がチェック内容の配列
  * @return array $err_list inputのnameが添字の連想配列
@@ -68,6 +68,11 @@ function validation($data) {
       $err_list[$key] = 'match';
       continue;
     }
+  }
+
+  // カタカナチェック
+  if(isset($row['kana']) && !preg_match("/^[ァ-ヾ]+$/u", $_REQUEST[$key])){
+    $err_list[$key] = 'kana';
   }
 
   return $err_list;
