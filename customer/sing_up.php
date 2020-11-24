@@ -41,3 +41,26 @@ $err_msg = [
   'match' => '',
   'kana' => ''
 ];
+
+// サインアップボタンを押下したときの処理
+if (!empty($_POST) && $_POST['btn'] === 'sing_up') {
+  
+  $post = $_POST;
+  
+  // バリデーションチェックをし、cssのclassセット
+  $err_list = validation($validat);
+  $class = empty($err_list) ? 'none' : '';
+  if (!empty($class)) {
+    $link = mysqli_connect(HOST, USER_ID, PASS, DB_NAME);
+
+
+
+    mysqli_close($link);
+  }
+
+}
+
+
+
+
+require_once './tpl/customer/sing_up.php';
