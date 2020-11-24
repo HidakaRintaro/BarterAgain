@@ -68,12 +68,11 @@ function validation($data) {
       $err_list[$key] = 'match';
       continue;
     }
+    
+    // カタカナチェック
+    if(isset($row['kana']) && !preg_match("/^[ァ-ヾ]+$/u", $_REQUEST[$key])){
+      $err_list[$key] = 'kana';
+    }
   }
-
-  // カタカナチェック
-  if(isset($row['kana']) && !preg_match("/^[ァ-ヾ]+$/u", $_REQUEST[$key])){
-    $err_list[$key] = 'kana';
-  }
-
   return $err_list;
 }
