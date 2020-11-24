@@ -17,14 +17,25 @@ $form_name = [
 // バリデーションチェックを行うリスト
 $validat = [
   'nickname' => ['blank' => 1, 'max_val' => 30],
-  'email' => ['blank' => 1, '' => 1],
-  'price' => ['blank' => 1, 'numeric' => 1],
-  'release_date' => ['blank' => 1, 'numeric' => 1, 'digit' => 8],
-  'purchase_date' => ['blank' => 2, 'numeric' => 1, 'digit' => 8]
+  'email' => ['blank' => 1, 'email' => 1],
+  'password' => ['blank' => 1, 'max_val' => 20, 'min_val' => 8],
+  'confirmation_password' => ['blank' => 1, 'match' => 'password'], 
+  'last_name' => ['blank' => 1, 'max_val' => 20], 
+  'first_name' => ['blank' => 1, 'max_val' => 20], 
+  'last_name_kana' => ['blank' => 1, 'max_val' => 20, 'kana' => 1], 
+  'first_name_kana' => ['blank' => 1, 'max_val' => 20, 'kana' => 1], 
+  'year' => ['blank' => 1], 
+  'month' => ['blank' => 1], 
+  'day' => ['blank' => 1] 
 ];
 // エラーメッセージ一覧
 $err_msg = [
   'blank' => 'が未入力です。',
   'numeric' => 'は数値を入力してください。',
-  'digit' => '桁で入力してください。'
+  'digit' => '桁で入力してください。',
+  'max_val' => '',
+  'min_val' => '',
+  'email' => '',
+  'match' => '',
+  'kana' => ''
 ];
