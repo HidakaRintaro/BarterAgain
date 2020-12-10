@@ -5,7 +5,7 @@
   <title>header</title>
   <meta charset="utf-8">
   <!-- jQueryの読み込み -->
-  <link rel="stylesheet" href="../css/itiran.css">
+  <link rel="stylesheet" href="../tpl/css/itiran.css">
 </head>
 
 <body>
