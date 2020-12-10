@@ -1,5 +1,6 @@
 <?php
 require_once '../const.php';
+require_once './func.php';
 
 /**
  * DB接続
@@ -121,6 +122,30 @@ function mk_select_sql($table, $params) {
     $sql .= "LIMIT ".$limit;
   }
   return $sql;
+}
+
+/**
+ * SELECT文の実行
+ * 
+ * SELECTのSQLを作成し実行する。
+ * 
+ * SQLの作成は{ @see mk_select_sql }を使用
+ * @see mk_select_sql
+ * 
+ * @param  object $link   DBの接続情報
+ * @param  string $table  値の配列 (詳細は)
+ * @param  array  $params 
+ * @return array          SELECT文の実行結果
+ */
+function run_select($link, $table, $params) {
+  $sql = mk_select_sql($table, $params);
+  $result = mysqli_query($link, $sql);
+  is_sql_normal($link, $result);
+  while ($row = mysqli_fetch_assoc($result)) {
+    $list[] = $row;
+  }
+  if ( !isset($list) ) $list = []; // 値が無い時は空の配列を代入
+  return $list;
 }
 
 /**

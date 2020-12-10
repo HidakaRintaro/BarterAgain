@@ -1,4 +1,6 @@
 <?php
+require_once './func_db.php';
+
 /**
  * flashメッセージセット関数
  * 
@@ -135,131 +137,18 @@ function hash_str($pass, $solt, $cnt) {
 }
 
 /**
- * DB接続チェック
+ * 文字列のサニタイズ
  * 
- * DBの接続をチェックする。
- * エラー時エラーページへ遷移し処理を終了する
+ * 戻り値無しでエスケープするため、引数の$escape_arr作成時も
+ * 参照代入で配列を作成し本来の変数にエスケープをかけに行く。
  * 
- * @param  object $link DBの接続情報
+ * @param  object $link       DBの接続情報
+ * @param  array  $escape_arr エスケープ対象の配列
  * @return void
  */
-function is_connect_normal($link) {
-  if ( !$link ) {
-    $err_msg = '予期せぬエラーが発生しました。しばらくたってから再度お試しください。';
-    require './tpl/error.php';
-    exit;
-  }
-}
-
-/**
- * DBのSQLチェック
- * 
- * SQLのチェックをする。
- * エラー時DBを切断しエラーページへ遷移し処理を終了。
- * 
- * @param  object $link   DBの接続情報
- * @param  object $result SQLの実行結果
- * @return void
- */
-function is_sql_normal($link, $result) {
-  if (!$result) {
-    mysqli_close($link);
-    $err_msg = '予期せぬエラーが発生しました。しばらくたってから再度お試しください。';
-    require './tpl/error.php';
-    exit;
-  }
-}
-
-/**
- * 新規顧客登録
- * 
- * 新規顧客登録処理。
- * 
- * $data = [nickname, email, last_name, first_name, last_name_kana, first_name_kana, birthday]
- * 
- * @param  object $link DBの接続情報
- * @param  array  $data 顧客の登録データ配列
- * @return void
- */
-function db_insert_customer($link, &$customer_info) {
-  mysqli_set_charset($link, 'utf8');
-  $sql = "INSERT INTO customer(nickname, email, last_name, first_name, last_name_kana, first_name_kana, birthday) 
-    VALUES(?, ?, ?, ?, ?, ?, ?)";
-  $stmt = mysqli_prepare($link, $sql);
-  // mysqli_stmt_bind_param($stmt, 'sssssss', $customer_info[0], $customer_info[1], $customer_info[2], $customer_info[3], $customer_info[4], $customer_info[5], $customer_info[6]);
-  $array = [$stmt, 'sssssss', $customer_info];
-  call_user_func_array("mysqli_stmt_bind_param", $array);
-  $result = mysqli_stmt_execute($stmt);
-  is_sql_normal($link, $result);
-  mysqli_stmt_close($stmt);
-  $id = mysqli_insert_id($link);
-}
-
-/**
- * 
- * 
- * 
- * @param object $link DBの接続情報
- * @param array  $
- */
-// function db_insert($link, ) {
-
-// }
-
-//  TODO: ユーザidの設定
-/**
- * パスワード情報の登録
- * 
- * 新規顧客のパスワード情報の登録
- * 
- * @param  object $link DBの接続情報
- * @param  int    $id   会員id
- * @param  string $pass ハッシュパスワード
- * @param  string $solt ソルト文字
- * @param  int    $cnt  ハッシュ回数
- * @return void
- */
-function db_insert_password($link, $id, $pass, $solt, $cnt) {
-  mysqli_set_charset($link, 'utf8');
-  $sql = "INSERT INTO password_info(customer_id, encrypted_password, solt, hash_cnt) 
-    VALUES(?, ?, ?, ?)";
-  $stmt = mysqli_prepare($link, $sql);
-  mysqli_stmt_bind_param($stmt, 'issi', $id, $pass, $solt, $cnt);
-  $result = mysqli_stmt_execute($stmt);
-  is_sql_normal($link, $result);
-  mysqli_stmt_close($stmt);
-}
-
-function db_select_product($link, $product_id, $search) {
-  
-  mysqli_set_charset($link, 'utf8');
-  
-  
-}
-
-function db_select_products($link, $search = NULL) {
-  mysqli_set_charset($link, 'utf8');
-  $sql = "SELECT name, price, img_id FROM ";  // TODO: 取得カラムの指定をする
-  
-  if (isset($search)) {
-    $sql .= " WEHRE CONCAT(name, body, image1_id, image2_id, image3_id, image4_id) LIKE '%".$search."%'";  // TODO: VIEWでテーブルを作って使用する
-  }
-
-  $sql .= " ORDER BY update_at desc";
-}
-
-/**
- * SQLに使用する文字列のサニタイズ
- * 
- * $_GETの値をサニタイズし、再代入する。
- * 
- * @param  object $link DBの接続情報
- * @return void
- */
-// TODO: getとpostの両方があるときを想定する
-function db_escape_str($link) {
-  foreach ($_REQUEST as $key => $val) {
-    $_REQUEST[$key] = mysqli_real_escape_string($link, $val);
+function escape_str($link, &$escape_arr) {
+  foreach ($escape_arr as $key => $val) {
+    $escape_arr[$key] = mysqli_real_escape_string($link, $val);
   }
 }
 
@@ -289,6 +178,7 @@ function is_login($url) {
  * @param  int  $id 会員id (初期値：セッション保持中の会員id)
  * @return void
  */
+// エラーページの設定
 function save_login_session($id) {
   if ( !isset($id) ) require_once 'error.php'; exit;  // TODO: エラーページへ遷移
   $_SESSION['login'] = [
@@ -313,27 +203,18 @@ function discard_login_session() {
  * 
  * ログイン時の情報の認証処理
  * 
- * @param  object $link  DBの接続情報
- * @param  string $email ログイン時のメールアドレス
- * @param  string $pass  ログイン時のパスワード
- * @return void
+ * @param  array   $params  DBデータの取得配列
+ * @param  string  $email   ログイン時のメールアドレス
+ * @param  string  $pass    ログイン時のパスワード
+ * @return boolean
  */
-// booleanをreturnで返すべき？？
-function login_authentication($link, $email, $pass) {
-  mysqli_set_charset($link, 'utf8');
-  $sql = "SELECT * FROM v_auth ORDER BY id ASC";
-  $result = mysqli_query($link, $sql);
-  is_sql_normal($link, $result);
-  while ($row = mysqli_fetch_assoc($result)) {
-    $hashes[] = $row;
-  }
-  
-  // 会員の一致検索
-  foreach ($hashes as $row) {
+function login_authentication($params, $email, $pass) {
+  foreach ($params as $row) {
     $input_pass = hash_str($pass, $row['solt'], $row['hash_cnt']);
     if ( $input_pass == $row['password'] && $email == $row['email'] ) {
       save_login_session($row['id']);
-      break;
+      return true;
     }
   }
+  return false;
 }
