@@ -1,0 +1,298 @@
+@charset "utf-8";
+
+*{
+	margin: 0px;
+	padding: 0px;
+}
+header{
+		background-image: url(../img/renga.jpg);
+		background-repeat: repeat-x;
+    padding: 40px 40px;
+    position: fixed;
+    top: 0;
+    width: auto;
+    display: flex;
+    align-items: center;
+		position: sticky;
+ }
+ body{
+	 background-color: #deb887;
+ }
+h1{
+    margin: 0;
+    padding: 0;
+    font-size: 25px;
+		color: #ffffff;
+		text-shadow: 3px 3px 2px #000000;
+}
+#hr_ul{
+    margin: 0;
+    display: flex;
+    list-style: none;
+		color: #ffffff;
+		text-shadow: 3px 3px 2px #000000;
+}
+li {
+    margin: 0 0 0 10px;
+    font-size: 16px;
+}
+nav {
+    margin: 0 20px 0 auto;
+ }
+
+ #B{
+ margin: 0px 0px 200px 0px;
+ width:250px;
+ min-height:1000px;
+ height:auto;
+ background-color:#a0522d;
+ float:left;
+ }
+#B1 p{
+	text-align: center;
+}
+
+/* ここから */
+h2{
+	text-align: center;
+}
+
+
+
+
+/* 商品説明テキストエリア */
+.setumei {
+	position: relative;
+	width: 80%;
+	margin: 40px 3%;
+}
+.setumei input[type=text] {
+	font: 15px/24px sans-serif;
+	box-sizing: border-box;
+	width: 100%;
+	margin: 8px 0;
+	padding: 0.3em;
+	transition: 0.3s;
+	border: 1px solid #1b2538;
+	border-radius: 4px;
+	outline: none;
+}
+.setumei input[type=text]:focus {
+	border-color: #da3c41;
+}
+.setumei input[type=text] {
+	padding-left: 40px;
+}
+.setumei i {
+	position: absolute;
+	top: 8px;
+	left: 0;
+	padding: 9px 8px;
+	transition: 0.3s;
+	color: #aaaaaa;
+}
+.setumei input[type=text]:focus + i {
+	color: #da3c41;
+}
+/* 商品説明テキストエリア */
+
+
+/*セレクトボックスカテゴリー*/
+.kategori {
+	overflow: hidden;
+	width: 90%;
+	margin: 2em auto;
+	text-align: center;
+}
+.kategori select {
+	width: 100%;
+	padding-right: 1em;
+	cursor: pointer;
+	text-indent: 0.01px;
+	text-overflow: ellipsis;
+	border: none;
+	outline: none;
+	background: transparent;
+	background-image: none;
+	box-shadow: none;
+	-webkit-appearance: none;
+	appearance: none;
+}
+.kategori select::-ms-expand {
+    display: none;
+}
+.kategori.cp_sl01 {
+	position: relative;
+	border: 1px solid #bbbbbb;
+	border-radius: 2px;
+	background: #ffffff;
+}
+.kategori.cp_sl01::before {
+	position: absolute;
+	top: 0.8em;
+	right: 0.9em;
+	width: 0;
+	height: 0;
+	padding: 0;
+	content: '';
+	border-left: 6px solid transparent;
+	border-right: 6px solid transparent;
+	border-top: 6px solid #666666;
+	pointer-events: none;
+}
+.kategori.cp_sl01 select {
+	padding: 8px 38px 8px 8px;
+	color: #666666;
+}
+/*セレクトボックスカテゴリー*/
+/*セレクトボックス商品状態*/
+.jyoutai {
+	overflow: hidden;
+	width: 90%;
+	margin: 2em auto;
+	text-align: center;
+}
+.jyoutai select {
+	width: 100%;
+	padding-right: 1em;
+	cursor: pointer;
+	text-indent: 0.01px;
+	text-overflow: ellipsis;
+	border: none;
+	outline: none;
+	background: transparent;
+	background-image: none;
+	box-shadow: none;
+	-webkit-appearance: none;
+	appearance: none;
+}
+.jyoutai select::-ms-expand {
+    display: none;
+}
+.jyoutai.cp_sl01 {
+	position: relative;
+	border: 1px solid #bbbbbb;
+	border-radius: 2px;
+	background: #ffffff;
+}
+.jyoutai.cp_sl01::before {
+	position: absolute;
+	top: 0.8em;
+	right: 0.9em;
+	width: 0;
+	height: 0;
+	padding: 0;
+	content: '';
+	border-left: 6px solid transparent;
+	border-right: 6px solid transparent;
+	border-top: 6px solid #666666;
+	pointer-events: none;
+}
+.jyoutai.cp_sl01 select {
+	padding: 8px 38px 8px 8px;
+	color: #666666;
+}
+/*セレクトボックス商品状態*/
+　
+/*欲しい商品テキストエリア*/
+.hosii {
+	position: relative;
+	width: 80%;
+	margin: 40px 3%;
+}
+.hosii input[type=text] {
+	font: 15px/24px sans-serif;
+	box-sizing: border-box;
+	width: 100%;
+	margin: 8px 0;
+	padding: 0.3em;
+	transition: 0.3s;
+	border: 1px solid #1b2538;
+	border-radius: 4px;
+	outline: none;
+}
+.hosii input[type=text]:focus {
+	border-color: #da3c41;
+}
+.hosii input[type=text] {
+	padding-left: 40px;
+}
+.hosii i {
+	position: absolute;
+	top: 8px;
+	left: 0;
+	padding: 9px 8px;
+	transition: 0.3s;
+	color: #aaaaaa;
+}
+.hosii input[type=text]:focus + i {
+	color: #da3c41;
+}
+/*欲しい商品テキストエリア*/
+/*セレクトジャンル*/
+.jyannru {
+	overflow: hidden;
+	width: 90%;
+	margin: 2em auto;
+	text-align: center;
+}
+.jyannru select {
+	width: 100%;
+	padding-right: 1em;
+	cursor: pointer;
+	text-indent: 0.01px;
+	text-overflow: ellipsis;
+	border: none;
+	outline: none;
+	background: transparent;
+	background-image: none;
+	box-shadow: none;
+	-webkit-appearance: none;
+	appearance: none;
+}
+.jyannru select::-ms-expand {
+    display: none;
+}
+.jyannru.cp_sl01 {
+	position: relative;
+	border: 1px solid #bbbbbb;
+	border-radius: 2px;
+	background: #ffffff;
+}
+.jyannru.cp_sl01::before {
+	position: absolute;
+	top: 0.8em;
+	right: 0.9em;
+	width: 0;
+	height: 0;
+	padding: 0;
+	content: '';
+	border-left: 6px solid transparent;
+	border-right: 6px solid transparent;
+	border-top: 6px solid #666666;
+	pointer-events: none;
+}
+.jyannru.cp_sl01 select {
+	padding: 8px 38px 8px 8px;
+	color: #666666;
+}
+/*セレクトジャンル*/
+
+
+/* 出品ボタン */
+.botann {
+  width:100px;
+  font-size:12px;
+  color:#f00a0a;
+  text-align:center;
+  display:block;
+  padding:10px 0 10px;
+  background:#e40b0b;
+  border-radius: 20px;
+}
+
+.square {
+    width: 100px;
+    height: 100px;
+    }
+

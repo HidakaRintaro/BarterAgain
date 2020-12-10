@@ -1,0 +1,176 @@
+@charset "utf-8";
+
+*{
+	margin: 0px;
+	padding: 0px;
+}
+header{
+		background-image: url(../img/renga.jpg);
+		background-repeat: repeat-x;
+    padding: 40px 40px;
+    position: fixed;
+    top: 0;
+    width: auto;
+    display: flex;
+    align-items: center;
+		position: sticky;
+ }
+ body{
+	 background-color: #deb887;
+ }
+h1{
+    margin: 0;
+    padding: 0;
+    font-size: 25px;
+		color: #ffffff;
+		text-shadow: 3px 3px 2px #000000;
+}
+#hr_ul{
+    margin: 0;
+    display: flex;
+    list-style: none;
+		color: #ffffff;
+		text-shadow: 3px 3px 2px #000000;
+}
+li {
+    margin: 0 0 0 10px;
+    font-size: 16px;
+}
+nav {
+    margin: 0 20px 0 auto;
+ }
+
+ #B{
+ margin: 0px 0px 200px 0px;
+ width:250px;
+ min-height:1000px;
+ height:auto;
+ background-color:#a0522d;
+ float:left;
+ }
+#B1 p{
+	text-align: center;
+}
+
+/* ここから */
+h2{
+	text-align: center;
+}
+.float_box{
+  text-align: center;
+}
+.float_box a
+{
+  /* [ブロック要素に変更] */
+  display: block;
+ 
+  /* [余白を指定] */
+  margin-right: 30px;
+}
+.float_box ul,
+.float_box li,
+.float_box p
+{
+  /* [余白をリセット] */
+  margin: 0;
+  padding: 0;
+}
+.float_box li
+{
+  /* [黒点を非表示] */
+  list-style-type: none;
+}
+.float_box li
+{
+  /* [要素を横並びにする] */
+  float: left;
+ 
+  /* [pxだと、相対的な値にならないので、%を使う] */
+  /* [4個分のサイズを指定] */
+  width: 25%;
+}
+.float_box ul
+{
+  /* [縦幅を復帰。] */
+  overflow: hidden;
+}
+.float_box .image
+{
+  /* [ボックス内を最大サイズにする] */
+  max-width: 100%;
+}
+.float_box a
+{
+  /* [リンク文字の初期値を黒にする] */
+  color: #000;
+ 
+  /* [リンクテキストのアンダーラインを非表示にする] */
+  text-decoration: none;
+}
+.float_box .name
+{
+  /* [商品名の文字を若干小さくする] */
+  font-size: .875em;
+ 
+  /* [商品名の文字をグレーにする] */
+  color: #777;
+}
+.float_box .price
+{
+  /* [価格を太文字にする] */
+  font-weight: bold;
+}
+.float_box .image
+{
+  /* [画像が真ん中に来るようにする] */
+  /* [画像と文字の間に余白を入れる] */
+  display: block;
+  margin: 0 auto 5px;
+}
+.float_box .name
+{
+  /* [価格との間に余白を入れる] */
+  margin-bottom: .75em;
+}
+
+.float_box a
+{
+  /* [ブロック要素に変更] */
+  display: block;
+ 
+  /* [余白を指定] */
+  margin-right: 30px;
+}
+.float_box
+{
+  /* [はみ出ている部分を非表示] */
+  overflow: hidden;
+}
+.float_box ul
+{
+  /* [右側に30px分の余白を作る] */
+  margin-right: -10px;
+}
+.float_box ul
+{
+   margin-left: 20px;
+}
+.float_box ul
+{
+  /* [下側に30px分の余白を削る] */
+  margin-bottom: -30px;
+}
+.float_box li
+{
+  /* [アイテムの下側に30px分の余白を設定] */
+  margin-bottom: 30px;
+}
+.float_box li:nth-of-type(4n+1)
+{
+  /* [4+1個置きにclearを設定] */
+  clear: both;
+}
+.square {
+    width: 100px;
+    height: 100px;
+    }
