@@ -1,5 +1,4 @@
 <?php
-require_once './func_db.php';
 
 /**
  * flashメッセージセット関数
@@ -22,6 +21,7 @@ function flash($msg) {
  * @return array       inputのnameが添字の連想配列
  */
 function validation_check($data) {
+  $err_list = [];
   foreach ($data as $key => $row) {
     // 空白のチェック(1:空白チェック、2:任意項目)
     if ( isset($row['blank']) ) {
@@ -65,10 +65,10 @@ function validation_check($data) {
       }
     }
 
-    // 
-    if ( isset($row['unique']) ) {
+    // ユニークチェック
+    // if ( isset($row['unique']) ) {
 
-    }
+    // }
 
     // 完全一致チェック
     if ( isset($row['match']) && $_REQUEST[$key] !== $_REQUEST[$row['match']] ) {
@@ -180,7 +180,10 @@ function is_login($url) {
  */
 // エラーページの設定
 function save_login_session($id) {
-  if ( !isset($id) ) require_once 'error.php'; exit;  // TODO: エラーページへ遷移
+  if ( !isset($id) ) {
+    require_once '../tpl/error.php';
+    exit;
+  }
   $_SESSION['login'] = [
     'customer_id' => $id,
     'login_time'  => date('Ymd')
