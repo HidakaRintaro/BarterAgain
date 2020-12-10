@@ -51,11 +51,7 @@ if (!empty($_POST) && $_POST['btn'] === 'sing_up') {
   $err_list = validation_check($validat);
   $class = empty($err_list) ? 'none' : '';
   if (!empty($class)) {
-    $link = mysqli_connect(HOST, USER_ID, PASS, DB_NAME);
 
-
-
-    mysqli_close($link);
   }
 
 }
