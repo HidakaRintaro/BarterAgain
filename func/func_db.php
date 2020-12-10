@@ -1,6 +1,4 @@
 <?php
-require_once '../const.php';
-require_once './func.php';
 
 /**
  * DB接続
@@ -158,7 +156,7 @@ function run_select($link, $table, $params) {
  * @param  array  $params INSERTする値の2次元配列 [ カラム名 => ['value' => 登録データ, 'type' => 型 ], .... ]
  * @return void
  */
-function run_insert($link, $table, $params) {
+function run_insert($link, $table, &$params) {
   $types = '';
   foreach ($params as $key => $row) {
     $columns[] = $key;
@@ -169,16 +167,21 @@ function run_insert($link, $table, $params) {
   $column = implode(", ", $columns);  // カラム名の配列を「, 」区切りで連結
   $bind   = implode(", ", $binds);    // ?の配列を「, 」区切りで連結
   $sql    = "INSERT INTO ".$table."(".$column.") VALUES(".$bind.")";
-  
   $stmt = mysqli_prepare($link, $sql);
-
+  
   // mysqli_stmt_bind_paramの引数の作成
-  $bind_params = [$stmt, $bind];
+  $bind_params = [$stmt, $types];
   foreach ($values as $val) {
     $bind_params[] = $val;
   }
-  call_user_func_array("mysqli_stmt_bind_param", $bind_params);  // コールバック関数でmysqli_stmt_bind_paramを呼び出す
 
+  // 第3引数以降を参照渡し
+  for ($i = 2; $i < count($bind_params); $i++) {
+    $bind_params[$i] = &$bind_params[$i];
+  }
+  
+  call_user_func_array("mysqli_stmt_bind_param", $bind_params);  // コールバック関数でmysqli_stmt_bind_paramを呼び出す
+  
   $result = mysqli_stmt_execute($stmt);
   is_sql_normal($link, $result);
   mysqli_stmt_close($stmt);
