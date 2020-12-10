@@ -1,5 +1,6 @@
 <?php
 require_once '../const.php';
+require_once './func.php';
 
 /**
  * DB接続
