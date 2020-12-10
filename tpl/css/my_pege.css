@@ -1,0 +1,31 @@
+@charset "utf-8";
+
+*{
+	margin: 0px;
+	padding: 0px;
+}
+
+/* マイページ */
+#my_img{
+	margin: 50px 0 50px;
+}
+#my_img img{
+	width: 160px;
+	height: 160px;
+}
+#my_img table{
+	margin-left: auto;
+	margin-right: auto;
+}
+#my_img a{
+  color: #777;
+  text-decoration: none;
+  -moz-transition: all 0.2s linear 0;
+  -webkit-transition: all 0.2s linear 0;
+}
+
+#my_img a:hover{
+ left: 0px;
+ top: 0px;
+ text-shadow: 1px 1px 1px #bbb;
+}

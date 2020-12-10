@@ -1,0 +1,39 @@
+@charset "utf-8";
+*{
+	margin: 0px;
+	padding: 0px;
+}
+h2{
+	margin: 20px 0 0 0;
+	text-align: center;
+	color: #ffffff;
+}
+
+/* 通知リスト */
+table{
+	text-align: center;
+	margin-left: auto;
+	margin-right: auto;
+}
+#nice ul{
+list-style: none;
+text-align: center;
+}
+#nice li a{
+background-color: #deb887;
+padding: 0px 200px;
+text-decoration: none;
+color: #333;
+font-size: 20px;
+}
+#nice li a:hover{
+	display: block;
+	background-color: #9EB7DD;
+}
+/* ボタン */
+#more_btn button{
+	text-align: center;
+}
+#close_btn button{
+	text-align: center;
+}
