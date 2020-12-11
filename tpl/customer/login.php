@@ -8,8 +8,8 @@
   <!-- フォント -->
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../css/header.css">
-  <link rel="stylesheet" href="../css/login.css">
+  <link rel="stylesheet" href="../tpl/css/header.css">
+  <link rel="stylesheet" href="../tpl/css/login.css">
 </head>
 
 <body>
@@ -55,7 +55,7 @@
       <br><br>
     </form>
     <hr>
-    <form action="../product/index.php" method="post">
+    <form method="post">
       <div id="text1">
         <input type="text" placeholder="メールアドレス" name="email">
       </div>
@@ -64,7 +64,7 @@
         <input type="password" placeholder="パスワード" name="password">
       </div>
       <br><br>
-      <input type="submit" value="ログイン" class="button6">
+      <button type="submit" class="button6" name="login_btn" value="login">ログイン</button>
     </form>
   </div>
 </body>
