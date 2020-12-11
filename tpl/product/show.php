@@ -43,7 +43,7 @@
 
     <tr>
       <td rowspan="4">
-        <p><img src="iiii"></p>
+        <p><img src="<?php echo FILE_IMG.$product['image_id']; ?>"></p>
       </td>
       <td>
         <p>出品者　　　<?php echo $product['nickname']; ?></p>
@@ -73,7 +73,7 @@
 
     <form method="get" action="">
       <tr>
-        <th colspan="2"><button class="btn1" type="submit">交換申請する</button></th>
+        <th colspan="2"><button class="btn1" type="submit" name="offer" value="offer">交換申請する</button></th>
       </tr>
     </form>
 

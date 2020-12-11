@@ -35,7 +35,7 @@
 
   <!-- 商品登録 -->
   <h2>商品登録</h2>
-  <form method="post">
+  <form method="post" enctype="multipart/form-data">
     <h3>商品画像</h3>
     <p><input type="file" name="product_img"></p>
 

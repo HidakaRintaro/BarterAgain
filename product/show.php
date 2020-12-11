@@ -24,7 +24,18 @@ $params = [
 
 $product = run_select($link, 'v_product_show', $params);
 $product = $product[0];
+
+// 申請処理
+// if ( isset($_POST) && $_POST['offer'] == 'offer' ) {
+//   $params = [
+//     'exhibit_id' => ['value' => ,            'type' => 's'], 
+//     'barter_id'  => ['value' => $product_id, 'type' => 's'], 
+//     'status'     => ['value' => 1,           'type' => 'i']
+//   ];
+//   run_insert($link, 'transaction', $params);
+// }
+
 get_close($link);
 
+
 require_once '../tpl/product/show.php';
-?>

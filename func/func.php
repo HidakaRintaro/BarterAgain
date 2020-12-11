@@ -247,3 +247,10 @@ function get_product_id($prefecture_id, $list) {
   $max = str_pad($max, 6, 0, STR_PAD_LEFT);
   return $prefecture_id.$max;
 }
+
+function file_upload($file_info, $customer_id, $product_id) {
+  $extension = pathinfo($file_info['name'], PATHINFO_EXTENSION);
+  $file_name = $customer_id.$product_id.'.'.$extension;
+  move_uploaded_file($file_info['tmp_name'], FILE_IMG.$file_name);
+  return $file_name;
+}

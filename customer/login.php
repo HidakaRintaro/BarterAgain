@@ -21,7 +21,6 @@ if (!empty($_POST) && $_POST['login_btn'] === 'login') {
   $class = empty($err_list) ? 'none' : '';
   if (!empty($class)) {
     $link = get_connect();
-    
     $params = [
       'order' => ['id' => 'ASC']
     ];
@@ -33,7 +32,6 @@ if (!empty($_POST) && $_POST['login_btn'] === 'login') {
       exit;
     }
   }
-
 }
 
 

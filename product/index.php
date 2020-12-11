@@ -9,11 +9,11 @@ $class = 'none';
 $link = get_connect();
 
 $params = [
-  'column' => ['id', 'name'], 
-  'order' => ['updated_at' => 'DESC']
+  'column' => ['id', 'name', 'image_id'], 
+  'order'  => ['updated_at' => 'DESC']
 ];
 $product_arr = run_select($link, 'product', $params);
 get_close($link);
 
+
 require_once '../tpl/product/index.php';
-?>

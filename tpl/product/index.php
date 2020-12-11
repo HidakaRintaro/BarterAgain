@@ -39,7 +39,7 @@
 <?php foreach ($product_arr as $row) : ?>
       <li>
         <a href="./show.php?id=<?php echo $row['id']; ?>">
-          <img src="../img/images.jpg" class="image">
+          <img src="<?php echo FILE_IMG.$row['image_id'] ?>" class="image">
           <p class="name"><?php echo $row['name']; ?></p>
         </a>
       </li>
