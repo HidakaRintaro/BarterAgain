@@ -168,18 +168,16 @@ function run_insert($link, $table, &$params) {
   $bind   = implode(", ", $binds);    // ?の配列を「, 」区切りで連結
   $sql    = "INSERT INTO ".$table."(".$column.") VALUES(".$bind.")";
   $stmt = mysqli_prepare($link, $sql);
-  
   // mysqli_stmt_bind_paramの引数の作成
   $bind_params = [$stmt, $types];
   foreach ($values as $val) {
     $bind_params[] = $val;
   }
-
+  
   // 第3引数以降を参照渡し
   for ($i = 2; $i < count($bind_params); $i++) {
     $bind_params[$i] = &$bind_params[$i];
   }
-  
   call_user_func_array("mysqli_stmt_bind_param", $bind_params);  // コールバック関数でmysqli_stmt_bind_paramを呼び出す
   
   $result = mysqli_stmt_execute($stmt);
