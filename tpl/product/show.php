@@ -43,30 +43,28 @@
 
     <tr>
       <td rowspan="4">
-        <p><img src="iiii">
-          <p>
+        <p><img src="iiii"></p>
       </td>
       <td>
-        <p>出品者　　　<?php echo "まるちゃん"; ?>
-      </td>
-      </p>
-    </tr>
-
-    <tr>
-      <td>
-        <p>カテゴリー　<?php echo "レディース"; ?></p>
+        <p>出品者　　　<?php echo $product['nickname']; ?></p>
       </td>
     </tr>
 
     <tr>
       <td>
-        <p>ブランド　　<?php echo "VERSACE"; ?></p>
+        <p>カテゴリー　<?php echo $product['category']; ?></p>
       </td>
     </tr>
 
     <tr>
       <td>
-        <p>商品の状態　<?php echo "目立った傷や汚れなし"; ?></p>
+        <p>ブランド　　<?php echo $product['brand']; ?></p>
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        <p>商品の状態　<?php echo $status[$product['status']]; ?></p>
       </td>
     </tr>
 
@@ -75,13 +73,13 @@
 
     <form method="get" action="">
       <tr>
-        <th colspan="2"><input class="btn1" name="request_btn" type="submit" value="交換申請する"></th>
+        <th colspan="2"><button class="btn1" type="submit">交換申請する</button></th>
       </tr>
     </form>
 
     <tr>
       <td colspan="2">
-        <p><?php echo "商品説明"; ?></p>
+        <p><?php echo $product['body']; ?></p>
       </td>
     </tr>
 
