@@ -175,7 +175,7 @@ function is_login($url) {
  * 
  * 会員idでエラーが出たらエラーページに遷移する。
  * 
- * @param  int  $id 会員id (初期値：セッション保持中の会員id)
+ * @param  int  $id 会員id
  * @return void
  */
 // エラーページの設定
@@ -184,9 +184,16 @@ function save_login_session($id) {
     require_once '../tpl/error.php';
     exit;
   }
+  $link = get_connect();
+  $params = [
+    'where' => ['id = ' => [$id]]
+  ];
+  $list = run_select($link, 'customer', $params);
+  get_close($link);
   $_SESSION['login'] = [
     'customer_id' => $id,
-    'login_time'  => date('Ymd')
+    'prefecture_id' => $list[0]['prefecture_id'],
+    'login_time' => date('Ymd')
   ];
 }
 
@@ -220,4 +227,23 @@ function login_authentication($params, $email, $pass) {
     }
   }
   return false;
+}
+
+/**
+ * 商品登録時の商品IDを算出
+ * 
+ * @param  int   $prefecture_id 出身地ID
+ * @param  array $list          同出身地の商品一覧
+ * @return int                  登録用商品ID
+ */
+function get_product_id($prefecture_id, $list) {
+  if ( empty($list) ) return $prefecture_id.'000000';
+  $max = 0;
+  foreach ($list as $val) {
+    $num = intval( substr($val['id'], 2) );
+    $max = $num > $max ? $num : $max ;
+  }
+  $max++;
+  $max = str_pad($max, 6 - strlen($max), 0, STR_PAD_LEFT);
+  return $prefecture_id.$max;
 }
