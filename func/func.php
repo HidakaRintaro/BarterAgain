@@ -214,7 +214,7 @@ function discard_login_session() {
 function login_authentication($params, $email, $pass) {
   foreach ($params as $row) {
     $input_pass = hash_str($pass, $row['solt'], $row['hash_cnt']);
-    if ( $input_pass == $row['password'] && $email == $row['email'] ) {
+    if ( $input_pass == $row['encrypted_password'] && $email == $row['email'] ) {
       save_login_session($row['id']);
       return true;
     }
