@@ -34,8 +34,7 @@ if (!empty($_POST) && $_POST['update'] === 'update') {
 
     get_close($link);
 
-    // header('location: ../product/index.php');
-    // exit;
+    save_login_session($_SESSION['login']['customer_id']);
   }
 
 }
