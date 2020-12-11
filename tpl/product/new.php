@@ -35,7 +35,7 @@
 
   <!-- 商品登録 -->
   <h2>商品登録</h2>
-  <form method="get" action="./index.php">
+  <form method="post">
     <h3>商品画像</h3>
     <p><input type="file" name="product_img"></p>
 
@@ -51,10 +51,10 @@
     <h2>商品の詳細</h2>
     <!-- セレクトカテゴリー -->
     <h3>カテゴリー</h3>
-    <select name="product_" required>
+    <select name="product_category" required>
       <option value="" hidden>---</option>
 <?php foreach ($category_arr as $val) : ?>
-      <option value="<?php echo $val['key']; ?>"><?php echo $val['name']; ?></option>
+      <option value="<?php echo $val['id']; ?>"><?php echo $val['name']; ?></option>
 <?php endforeach; ?>
     </select>
 
@@ -77,19 +77,19 @@
     <h2>交換について</h2>
     <!-- 欲しい商品テキストエリア -->
     <h3>欲しい商品</h3>
-    <textarea name="wata_product" maxlength="100" rows="4" cols="40" placeholder="商品説明"></textarea>
+    <textarea name="want_product" maxlength="100" rows="4" cols="40" placeholder="商品説明"></textarea>
 
     <!-- セレクトカテゴリー-->
     <h3>カテゴリー</h3>
-    <select name="wata_" required>
+    <select name="want_category" required>
       <option value="" hidden>---</option>
 <?php foreach ($category_arr as $val) : ?>
-      <option value="<?php echo $val['key']; ?>"><?php echo $val['name']; ?></option>
+      <option value="<?php echo $val['id']; ?>"><?php echo $val['name']; ?></option>
 <?php endforeach; ?>
     </select>
 
     <!-- ボタン -->
-    <p><button name="listing_btn">出品ボタン</button></p>
+    <p><button name="listing_btn" value="listing_btn">出品ボタン</button></p>
   </form>
 </body>
 
