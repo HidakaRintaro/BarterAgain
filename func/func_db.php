@@ -187,3 +187,49 @@ function run_insert($link, $table, &$params) {
   mysqli_stmt_close($stmt);
 }
 
+
+function run_update($link, $table, &$params) {
+  $types = '';
+  $sql = "UPDATE ".$table." SET ";
+  foreach ($params as $key => $row) {
+    if ( $key === 'where' ) {  // where句があるとき
+      $where = "WHERE ";
+      foreach ($row as $key => $val) {
+        $where_arr = explode('?', $key);
+        for ($i = 0; $i < count($where_arr); $i++) {
+          $where .= $where_arr[$i];
+          if ( isset($val[$i]) ) {
+            $where .= is_string( $val[$i] ) ? "'".$val[$i]."'" : $val[$i];
+          }
+        }
+        $where .= $key === array_key_last($row) ? " " : " AND " ;  // 最後の要素だけANDを省く
+      }
+    } else {  // 通常のUPDATE作成処理
+      $columns[] = $key." = ?";
+      $values[] = $row['value'];
+      $types .= $row['type'];
+    }
+  }
+  $column = implode(", ", $columns);  // カラム名の配列を「, 」区切りで連結
+  $sql .= $column." ";
+  if ( isset($where) ) $sql .= $where;
+
+  $stmt = mysqli_prepare($link, $sql);
+  
+  // mysqli_stmt_bind_paramの引数の作成
+  $bind_params = [$stmt, $types];
+  foreach ($values as $val) {
+    $bind_params[] = $val;
+  }
+
+  // 第3引数以降を参照渡し
+  for ($i = 2; $i < count($bind_params); $i++) {
+    $bind_params[$i] = &$bind_params[$i];
+  }
+
+  call_user_func_array("mysqli_stmt_bind_param", $bind_params);  // コールバック関数でmysqli_stmt_bind_paramを呼び出す
+  
+  $result = mysqli_stmt_execute($stmt);
+  is_sql_normal($link, $result);
+  mysqli_stmt_close($stmt);
+}
