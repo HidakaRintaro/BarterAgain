@@ -11,7 +11,7 @@
 <body>
   <header>
     <h1>
-      <a>まさるちゃん</a>
+      <a>BarterAgain</a>
     </h1>
     <nav>
       <ul class="hr_ul">
@@ -36,92 +36,14 @@
 
   <div class="float_box">
     <ul>
+<?php foreach ($product_arr as $row) : ?>
       <li>
-        <a href="#">
+        <a href="./show.php?id=<?php echo $row['id']; ?>">
           <img src="../img/images.jpg" class="image">
-          <p class="price">&yen;1,980</p>
-          <p class="name">商品名</p>
+          <p class="name"><?php echo $row['name']; ?></p>
         </a>
       </li>
-      <li>
-        <a href="#">
-          <img src="../img/images.jpg" class="image">
-          <p class="price">&yen;1,980</p>
-          <p class="name">商品名</p>
-        </a>
-      </li>
-      <li>
-        <a href="#">
-          <img src="../img/images.jpg" class="image">
-          <p class="price">&yen;1,980</p>
-          <p class="name">商品名</p>
-        </a>
-      </li>
-      <li>
-        <a href="#">
-          <img src="../img/images.jpg" class="image">
-          <p class="price">&yen;1,980</p>
-          <p class="name">商品名</p>
-        </a>
-      </li>
-      <li>
-        <a href="#">
-          <img src="../img/images.jpg" class="image">
-          <p class="price">&yen;1,980</p>
-          <p class="name">商品名</p>
-        </a>
-      </li>
-      <li>
-        <a href="#">
-          <img src="../img/images.jpg" class="image">
-          <p class="price">&yen;1,980</p>
-          <p class="name">商品名</p>
-        </a>
-      </li>
-      <li>
-        <a href="#">
-          <img src="../img/images.jpg" class="image">
-          <p class="price">&yen;1,980</p>
-          <p class="name">商品名</p>
-        </a>
-      </li>
-      <li>
-        <a href="#">
-          <img src="../img/images.jpg" class="image">
-          <p class="price">&yen;1,980</p>
-          <p class="name">商品名</p>
-        </a>
-      </li>
-      <li>
-        <a href="#">
-          <img src="../img/images.jpg" class="image">
-          <p class="price">&yen;1,980</p>
-          <p class="name">商品名</p>
-        </a>
-      </li>
-      <li>
-        <a href="#">
-          <img src="../img/images.jpg" class="image">
-          <p class="price">&yen;1,980</p>
-          <p class="name">商品名</p>
-        </a>
-      </li>
-      <li>
-        <a href="#">
-          <img src="../img/images.jpg" class="image">
-          <p class="price">&yen;1,980</p>
-          <p class="name">商品名</p>
-        </a>
-      </li>
-      <li>
-        <a href="#">
-          <img src="../img/images.jpg" class="image">
-          <p class="price">&yen;1,980</p>
-          <p class="name">商品名</p>
-        </a>
-      </li>
-
-
+<?php endforeach; ?>
     </ul>
   </div>
 
