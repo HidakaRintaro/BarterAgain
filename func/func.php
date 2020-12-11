@@ -244,6 +244,6 @@ function get_product_id($prefecture_id, $list) {
     $max = $num > $max ? $num : $max ;
   }
   $max++;
-  $max = str_pad($max, 6 - strlen($max), 0, STR_PAD_LEFT);
+  $max = str_pad($max, 6, 0, STR_PAD_LEFT);
   return $prefecture_id.$max;
 }
