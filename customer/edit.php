@@ -11,11 +11,6 @@ $class = 'none';
 //   'password' => ['blank' => 1, 'max_val' => 20, 'min_val' => 8]
 // ];
 
-$link = get_connect();
-
-$params = [ 'where' => [ 'id = ?' => [ $_SESSION['login']['customer_id'] ] ] ];
-$list = run_select($link, 'v_customer_edit', $params);
-get_close($link);
 // サインアップボタンを押下したときの処理
 if (!empty($_POST) && $_POST['update'] === 'update') {
 
@@ -32,17 +27,32 @@ if (!empty($_POST) && $_POST['update'] === 'update') {
       'prefecture_id' => ['value' => $post['prefectures'], 'type' => 's'], 
       'address' => ['value' => $post['address'], 'type' => 's'], 
       'telephone_number' => ['value' => $post['telephone'], 'type' => 's'], 
-      'email' => ['value' => $post['email'], 'type' => 's']
+      'email' => ['value' => $post['email'], 'type' => 's'], 
+      'where' => [ 'id = ?' => [ $_SESSION['login']['customer_id'] ] ]
     ];
-    run_insert($link, 'customer', $params);
+    run_update($link, 'customer', $params);
 
     get_close($link);
 
-    header('location: ../product/index.php');
-    exit;
+    // header('location: ../product/index.php');
+    // exit;
   }
 
 }
+
+$link = get_connect();
+
+$params = [ 'where' => [ 'id = ?' => [ $_SESSION['login']['customer_id'] ] ] ];
+$list = run_select($link, 'v_customer_edit', $params);
+$list = $list[0];
+
+$params = [
+  'column' => ['id', 'name'], 
+  'order' => ['id' => 'ASC' ]
+];
+$prefecture_arr = run_select($link, 'prefecture', $params);
+
+get_close($link);
 
 
 require_once '../tpl/customer/edit.php';
