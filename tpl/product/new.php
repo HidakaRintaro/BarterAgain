@@ -4,19 +4,21 @@
 <head>
   <title>header</title>
   <meta charset="utf-8">
-  <!-- jQueryの読み込み -->
-  <link rel="stylesheet" href="../css/itiran.css">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../tpl/css/new.css">
+  <link rel="stylesheet" href="../tpl/css/header.css">
 </head>
 
 <body>
   <header>
     <h1>
-      <a>まさるちゃん</a>
+      <a>BarterAgain</a>
     </h1>
     <nav>
-      <ul class="hr_ul">
+      <ul id="hr_ul">
         <li><a>カテゴリー</a></li>
-        <li><a>マイページ</a></li>
+        <li><a href="../customer/my_pege.php">マイページ</a></li>
       </ul>
     </nav>
   </header>
@@ -26,104 +28,69 @@
     <form action="#" method="GET">
       <div id="B1">
         <p><input type="text" placeholder="キーワードを入力" name="search">
-          <button type="submit">検索</button></p>
+          <button type="submit" name="serch_btn">検索</button></p>
       </div>
     </form>
   </div>
 
   <!-- 商品登録 -->
   <h2>商品登録</h2>
-  <!-- イメージ画像 -->
-  <h3>商品画像</h3>
-  <p><img src="../img/images.jpg" alt="写真" width="96" height="65"></p>
-  <!-- イメージ画像 -->
-  <!-- テキストボックス商品名 -->
-  <h3>商品名</h3>
-  <textarea name="example" cols="50" rows="5">
+  <form method="get" action="./index.php">
+    <h3>商品画像</h3>
+    <p><input type="file" name="product_img"></p>
 
-</textarea>
-  <!-- テキストボックス商品名 -->
-  <!-- テキストエリア商品説明 -->
-  <h3>商品説明</h3>
-  <div class="setumei">
-    <input type="text" placeholder="商品説明">
-    <i class="fa fa-user fa-lg fa-fw" aria-hidden="true"></i>
-  </div>
-  <!-- テキストエリア商品説明 -->
-  <!-- セレクトカテゴリー -->
-  <h3>商品カテゴリー</h3>
-  <div class="kategori">
-    <select required>
-      <option value="" hidden>カテゴリー</option>
-      <option value="1">赤</option>
-      <option value="2">赤</option>
-      <option value="3">赤</option>
-      <option value="4">赤</option>
+
+    <!-- テキストボックス商品名 -->
+    <h3>商品名</h3>
+    <input name="product_name" type="text" maxlength="40">
+
+    <!-- テキストエリア商品説明 -->
+    <h3>商品説明</h3>
+    <textarea name="product_text" maxlength="1000" rows="6" cols="40" placeholder="商品説明"></textarea>
+
+    <h2>商品の詳細</h2>
+    <!-- セレクトカテゴリー -->
+    <h3>カテゴリー</h3>
+    <select name="product_" required>
+      <option value="" hidden>---</option>
+<?php foreach ($category_arr as $val) : ?>
+      <option value="<?php echo $val['key']; ?>"><?php echo $val['name']; ?></option>
+<?php endforeach; ?>
     </select>
-  </div>
-  <!-- セレクトカテゴリー -->
-  <!-- テキストボックスブランド -->
-  <h3>商品ブランド名</h3>
-  <textarea name="example" cols="50" rows="5">
 
-</textarea>
-  <!-- テキストボックスブランド -->
-  <!-- セレクト商品状態 -->
-  <h3>商品状態</h3>
-  <div class="jyoutai">
-    <select required>
-      <option value="" hidden>商品状態</option>
-      <option value="1">紫</option>
-      <option value="2">紫</option>
-      <option value="3">紫</option>
-      <option value="4">紫</option>
+    <!-- テキストボックスブランド -->
+    <h3>ブランド</h3>
+    <input name="brand" type="text" maxlength="100">
+
+    <!-- セレクト商品状態 -->
+    <h3>商品状態</h3>
+    <select name="product_status" required>
+      <option value="" hidden>---</option>
+      <option value="1">新品、未使用</option>
+      <option value="2">未使用に近い</option>
+      <option value="3">目立った傷や汚れなし</option>
+      <option value="4">やや傷や汚れあり</option>
+      <option value="5">傷や汚れあり</option>
+      <option value="6">全体的に状態が悪い</option>
     </select>
-  </div>
-  <!-- セレクト商品状態 -->
 
-  <!-- 欲しい商品テキストエリア -->
-  <h3>欲しい商品</h3>
-  <div class="hosii">
-    <input type="text" placeholder="欲しい商品">
-    <i class="fa fa-user fa-lg fa-fw" aria-hidden="true"></i>
-  </div>
-  <!-- 欲しい商品テキストエリア -->
-  <!-- セレクトジャンル -->
-  <h3>ジャンル</h3>
-  <div class="jyannru">
-    <select required>
-      <option value="" hidden>ジャンル</option>
-      <option value="1">青</option>
-      <option value="2">青</option>
-      <option value="3">青</option>
-      <option value="4">青</option>
+    <h2>交換について</h2>
+    <!-- 欲しい商品テキストエリア -->
+    <h3>欲しい商品</h3>
+    <textarea name="wata_product" maxlength="100" rows="4" cols="40" placeholder="商品説明"></textarea>
+
+    <!-- セレクトカテゴリー-->
+    <h3>カテゴリー</h3>
+    <select name="wata_" required>
+      <option value="" hidden>---</option>
+<?php foreach ($category_arr as $val) : ?>
+      <option value="<?php echo $val['key']; ?>"><?php echo $val['name']; ?></option>
+<?php endforeach; ?>
     </select>
-  </div>
-  <!-- セレクトジャンル -->
 
-
-
-  <button class="botann">出品ボタン</button>
-
-  </div>
-  </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    <!-- ボタン -->
+    <p><button name="listing_btn">出品ボタン</button></p>
+  </form>
 </body>
 
 </html>
