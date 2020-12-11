@@ -34,29 +34,38 @@
   <div id="torok">
     <form method="post">
       <h2>本人情報更新</h2>
-      <p>日髙凜太郎</p>
-      <p>ニックネーム ：<input type="text" value="<?php echo 2; ?>" name="nickname"></p>
-
+      <p>氏名：<?php echo $list['name']; ?></p>
+      <p>フリガナ：<?php echo $list['name_kana']; ?></p>
+      <p>生年月日：<?php echo $list['birthday']; ?></p>
+      <p>ニックネーム ：<input type="text" value="<?php echo $list['nickname']; ?>" name="nickname"></p>
+      <br>
       <h2>発送元・お届け先住所変更</h2>
-      <p>郵便番号 : <input type="text" name="postal" value=""></p>
+      <p>郵便番号 : <input type="text" name="postal" value="<?php echo $list['postal_code']; ?>"></p>
       <br>
       <p>都道府県 : 
         <select name="prefectures">
           <option value="">--</option>
-          <option value=""></option>
+<?php foreach ($prefecture_arr as $val) : ?>
+          <option value="<?php echo $val['id']; ?>" <?php echo $list['prefecture'] == $val['name'] ? 'selected' : '' ; ?>>
+            <?php echo $val['name']; ?>
+          </option>
+<?php endforeach; ?>
         </select>
       </p>
       <br>
-      <p>住所 : <input type="text" name="address"></p>
+      <p>住所 : <input type="text" name="address" value="<?php echo $list['address']; ?>"></p>
       <br>
-      <h2>メールアドレス・パスワード</h2>
-      <p>メールアドレス : <input type="text" name="email"></p>
+      <p>電話番号： <input type="tel" name="telephone" value="<?php echo $list['telephone_number'] ?>"> </p>
       <br>
-      <p>現在のパスワード : <input type="password" name="old_password"></p>
+      <!-- <h2>メールアドレス・パスワード</h2> -->
+      <p>メールアドレス : <input type="text" name="email" value="<?php echo $list['email']; ?>"></p>
+      <br>
+      <!-- <p>現在のパスワード : <input type="password" name="old_password"></p>
       <br>
       <p>新しいパスワード : <input type="password" name="new_password"></p>
-      <p>新しいパスワード : <input type="password" name="conf_password"></p>
       <br>
+      <p>確認パスワード : <input type="password" name="conf_password"></p>
+      <br> -->
       <p><button type="submit" name="update" value="update">登録</button></p>
     </form>
   </div>
