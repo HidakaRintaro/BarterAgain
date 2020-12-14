@@ -248,6 +248,16 @@ function get_product_id($prefecture_id, $list) {
   return $prefecture_id.$max;
 }
 
+/**
+ * ファイルアップロード
+ * 
+ * ファイル名を「会員ID＋商品ID」にして保存する
+ * 
+ * @param  array  $file_info   ファイルの詳細情報
+ * @param  int    $customer_id 会員ID
+ * @param  string $product_id  商品ID
+ * @return string              アップロード画像の名前を返す
+ */
 function file_upload($file_info, $customer_id, $product_id) {
   $extension = pathinfo($file_info['name'], PATHINFO_EXTENSION);
   $file_name = $customer_id.$product_id.'.'.$extension;
