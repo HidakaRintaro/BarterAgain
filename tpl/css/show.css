@@ -1,12 +1,18 @@
 @charset "utf-8";
 
 *{
-	margin: 0px;
-	padding: 0px;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 h2,p {
   color: #ffffff;
 }
+td {
+  text-align: center;
+  word-break: break-all; /* 日髙が追加 */
+}
+
 table {
   margin-left: auto;
   margin-right: auto;
@@ -17,14 +23,13 @@ p {
 }
 
 img {
-  width: 200px;
+  width: 300px;
   height: 300px;
 }
 
-
 /* ボタン */
 .btn1{
-	margin: 20px 0 0 0;
+  margin: 20px 0 0 0;
   display       : inline-block;
   border-radius : 5%;          /* 角丸       */
   font-size     : 10pt;        /* 文字サイズ */
@@ -56,7 +61,38 @@ img {
   transition    : .3s;         /* なめらか変化 */
   border        : 2px solid #000000;    /* 枠の指定 */
 }
+
 .btn2:hover {
   color         : #a9a9a9;     /* 背景色     */
   background    : #ffffff;     /* 文字色     */
+}
+
+.content{
+  margin: 0 auto;
+  padding: 40px;
+}
+
+.modal{
+  display: none;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+.modal__bg{
+  background: rgba(0,0,0,0.8);
+  height: 100vh;
+  position: absolute;
+  width: 100%;
+}
+
+.modal__content{
+  background: #fff;
+  left: 50%;
+  padding: 40px;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%,-50%);
+  width: 60%;
 }
