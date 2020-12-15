@@ -59,14 +59,15 @@ if ( !empty($_POST) && $_POST['signup_btn'] === 'sing_up' ) {
 
     $link = get_connect();
 
+    $birthday = $post['year'].'-'.$post['month'].'-'.$post['day'];
     $insert_sql = [
-      'last_name'       => [ 'value'=> $post['last_name'],                                'type' => 's' ], 
-      'first_name'      => [ 'value'=> $post['first_name'],                               'type' => 's' ], 
-      'last_name_kana'  => [ 'value'=> $post['last_name_kana'],                           'type' => 's' ], 
-      'first_name_kana' => [ 'value'=> $post['first_name_kana'],                          'type' => 's' ], 
-      'email'           => [ 'value'=> $post['email'],                                    'type' => 's' ], 
-      'birthday'        => [ 'value'=> $post['year'].'-'.$post['month'].'-'.$post['day'], 'type' => 's' ], 
-      'nickname'        => [ 'value'=> $post['nickname'],                                 'type' => 's' ]
+      'last_name'       => [ 'value'=> $post['last_name'],       'type' => 's' ], 
+      'first_name'      => [ 'value'=> $post['first_name'],      'type' => 's' ], 
+      'last_name_kana'  => [ 'value'=> $post['last_name_kana'],  'type' => 's' ], 
+      'first_name_kana' => [ 'value'=> $post['first_name_kana'], 'type' => 's' ], 
+      'email'           => [ 'value'=> $post['email'],           'type' => 's' ], 
+      'birthday'        => [ 'value'=> $birthday,                'type' => 's' ], 
+      'nickname'        => [ 'value'=> $post['nickname'],        'type' => 's' ]
     ];
     run_insert($link, 'customer', $insert_sql);
     $id = mysqli_insert_id($link);
