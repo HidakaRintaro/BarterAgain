@@ -55,6 +55,14 @@
       <br><br>
     </form>
     <hr>
+  <!-- ​エラーメッセージ -->
+  <div class="<?php echo $class; ?>">
+    <ul>
+<?php foreach ($err_list as $key => $err) : ?>
+      <li><?php echo $form_name[$key].$err_msg[$err]; ?></li>
+<?php endforeach; ?>
+    </ul>
+  </div>
     <form method="post">
       <div id="text1">
         <input type="text" placeholder="メールアドレス" name="email">
