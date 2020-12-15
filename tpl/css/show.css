@@ -105,3 +105,16 @@ img {
   right: 1rem;
   cursor: pointer;
 }
+
+.modal_body {
+  display: flex;
+}
+
+.modal_img {
+  margin-right: 30px;
+}
+
+.modal_img img {
+  max-width: 200px;
+  max-height: 200px;
+}
