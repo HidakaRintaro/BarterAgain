@@ -25,6 +25,26 @@ $link = get_connect();
 
 
 //------------------------------
+// 商品交換申請の登録
+//------------------------------
+
+// 商品交換申請ボタンを押されたとき
+if ( !empty($_POST['request_btn']) && $_POST['request_btn'] == 'request_btn' ) {
+  $post = $_POST;
+
+  $insert_sql = [
+    'exhibit_id' => ['value' => $post['exhibit_id'], 'type' => 's'], 
+    'barter_id'  => ['value' => $post['barter_id'],  'type' => 's'], 
+    'status'     => ['value' => 1,                   'type' => 'i']
+  ];
+  run_insert($link, 'transaction', $insert_sql);
+
+  header('location: ./index.php');
+  exit;
+}
+
+
+//------------------------------
 // 商品詳細情報の取得
 //------------------------------
 $select_sql = [ 'where' => [ 'id = ?' => [$product_id] ] ];
@@ -75,6 +95,7 @@ if ( !empty($_POST['post_btn']) && $_POST['post_btn'] == 'post_btn' ) {
     }
     $no_max = isset($no_arr) ? max($no_arr) + 1 : 0;
   
+    $insert_sql = [];
     $insert_sql = [
       'product_id'  => ['value' => $product_id,  'type' => 's'],
       'customer_id' => ['value' => $customer_id, 'type' => 's'],
