@@ -8,8 +8,9 @@ require_once '../func/func_db.php';
 is_login('../customer/login.php');
 $customer_id = $_SESSION['login']['customer_id'];
 
-
+// TODO: getが存在するか、IDは正しいかどうか
 $product_id = $_GET['id'];
+
 $product_status = [
   1 => '新品、未使用',
   2 => '未使用に近い',
@@ -94,13 +95,24 @@ if ( isset($_POST['comment_del']) && $_POST['comment_del'] == 'comment_del' ) {
   $update_sql = [
     'deleted_at' => ['value' => date('Y-m-d'), 'type' => 's'], 
     'where' => [
-      'product_id = ?'  => [ $post['product_id']  ], 
+      'product_id = ?'  => [ $post['product_id'] ], 
       'customer_id = ?' => [ $post['customer_id'] ], 
-      'no = ?'          => [ $post['no']          ]
+      'no = ?'          => [ $post['no'] ]
     ]
   ];
   run_update($link, 'comment', $update_sql);
 }
+
+
+//------------------------------
+// 申請者の出品一覧の取得
+//------------------------------
+$select_sql = [];
+$select_sql = [
+  'column' => [ 'id', 'name', 'image_id' ], 
+  'where'  => [ 'customer_id = ?' => [ $customer_id ] ]
+];
+$barter_list = run_select($link, 'product', $select_sql);
 
 
 //------------------------------
