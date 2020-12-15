@@ -33,6 +33,13 @@
    <!-- 会員登録 -->
    <div id="torok">
       <h2>新規会員登録</h2>
+      <div class="<?php echo $class; ?>">
+         <ul>
+<?php foreach ($err_list as $key => $err) : ?>
+            <li><?php echo $form_name[$key].$err_msg[$err]; ?></li>
+<?php endforeach; ?>
+         </ul>
+      </div>
       <form method="post">
          <p>ニックネーム　　：<input type="text" placeholder="例)まさちゃん" name="nickname"></p>
          <br>
