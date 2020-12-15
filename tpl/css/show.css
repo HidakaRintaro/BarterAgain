@@ -88,11 +88,20 @@ img {
 }
 
 .modal__content{
-  background: #fff;
+  background: #deb887;
   left: 50%;
   padding: 40px;
   position: absolute;
   top: 50%;
   transform: translate(-50%,-50%);
-  width: 60%;
+  width: 70%;
+  height: 90%;
+  overflow: auto;
+}
+
+.closeModal {
+  position: absolute;
+  top: 0.5rem;
+  right: 1rem;
+  cursor: pointer;
 }
