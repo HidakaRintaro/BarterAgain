@@ -4,6 +4,10 @@ require_once '../const.php';
 require_once '../func/func.php';
 require_once '../func/func_db.php';
 
+// ログインセッションを破棄
+discard_login_session();
+
+
 $class = 'none';
 $form_name = [
   'nickname' => 'ニックネーム', 
@@ -18,43 +22,44 @@ $form_name = [
   'month' => '月', 
   'day' => '日'
 ];
-// バリデーションチェックを行うリスト
 $validat = [
   'nickname'        => ['blank' => 1, 'max_val' => 30],
   'email'           => ['blank' => 1,                  'email' => 1, 'unique' => 'email'],
   'password'        => ['blank' => 1, 'max_val' => 20, 'min_val' => 8],
   'last_name'       => ['blank' => 1, 'max_val' => 20], 
   'first_name'      => ['blank' => 1, 'max_val' => 20], 
-  'last_name_kana'  => ['blank' => 1, 'max_val' => 20, 'kana' => 1], 
-  'first_name_kana' => ['blank' => 1, 'max_val' => 20, 'kana' => 1], 
+  'last_name_kana'  => ['blank' => 1, 'max_val' => 40, 'kana' => 1], 
+  'first_name_kana' => ['blank' => 1, 'max_val' => 40, 'kana' => 1], 
   'year'            => ['blank' => 1], 
   'month'           => ['blank' => 1], 
   'day'             => ['blank' => 1] 
 ];
-// エラーメッセージ一覧
-// $err_msg = [
-//   'blank'   => 'が未入力です。',
-//   'numeric' => 'は数値を入力してください。',
-//   'digit'   => '桁で入力してください。',
-//   'max_val' => '',
-//   'min_val' => '',
-//   'email'   => '',
-//   'match'   => '',
-//   'kana'    => ''
-// ];
+$err_msg = [
+  'blank'   => 'が未入力です。',
+  'max_val' => '',
+  'min_val' => '',
+  'email'   => 'を正しい形式で入力してください。',
+  'unique'  => 'このメールアドレスはすでに存在します。',
+  'kana'    => 'はカタカナで入力してください。'
+];
 
-// サインアップボタンを押下したときの処理
+
+//------------------------------
+// 新規会員の登録
+//------------------------------
+
+// 新規会員登録ボタンを押されたとき
 if (!empty($_POST) && $_POST['signup_btn'] === 'sing_up') {
-
-  $post = $_POST;
-  
-  // バリデーションチェックをし、cssのclassセット
   $err_list = validation_check($validat);
   $class = empty($err_list) ? 'none' : '';
   
+  // バリデーションエラーが無い時、DBに新規会員情報をINSERTする
   if (!empty($class)) {
+    $post = $_POST;
+
     $link = get_connect();
-    $params = [
+
+    $insert_sql = [
       'last_name'       => ['value'=> $post['last_name'],                                'type' => 's'], 
       'first_name'      => ['value'=> $post['first_name'],                               'type' => 's'], 
       'last_name_kana'  => ['value'=> $post['last_name_kana'],                           'type' => 's'], 
@@ -63,11 +68,13 @@ if (!empty($_POST) && $_POST['signup_btn'] === 'sing_up') {
       'birthday'        => ['value'=> $post['year'].'-'.$post['month'].'-'.$post['day'], 'type' => 's'], 
       'nickname'        => ['value'=> $post['nickname'],                                 'type' => 's']
     ];
-    run_insert($link, 'customer', $params);
+    run_insert($link, 'customer', $insert_sql);
     $id = mysqli_insert_id($link);
 
     $enc_arr = encrypt_info_list($post['password']);
-    $params = [
+
+    $insert_sql = [];
+    $insert_sql = [
       'customer_id'        => ['value'=> $id,         'type' => 'i'], 
       'encrypted_password' => ['value'=> $enc_arr[2], 'type' => 's'], 
       'solt'               => ['value'=> $enc_arr[0], 'type' => 's'], 
@@ -75,6 +82,7 @@ if (!empty($_POST) && $_POST['signup_btn'] === 'sing_up') {
     ];
     run_insert($link, 'password_info', $params);
     get_close($link);
+
     save_login_session($id);
 
     header('location: ../product/index.php');
