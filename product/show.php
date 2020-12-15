@@ -62,6 +62,7 @@ if ( !empty($_POST['post_btn']) && $_POST['post_btn'] == 'post_btn' ) {
   // バリデーションエラーが無い時、DBにコメントをINSERTする
   if ( !empty($class) ) {
     $comment = $_POST['comment'];
+    
     $select_sql = [
       'column' => ['no'],
       'where'  => ['customer_id = ?' => [$customer_id]]

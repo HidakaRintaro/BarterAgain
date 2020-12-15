@@ -90,7 +90,19 @@
     <div class="modal js-modal">
       <div class="modal__bg js-modal-close"></div>
       <div class="modal__content">
-        <p>ここにモーダルウィンドウで表示したいコンテンツを入れます。モーダルウィンドウを閉じる場合は下の「閉じる」をクリックするか、背景の黒い部分をクリックしても閉じることができます。</p>
+        <p>
+        <table>
+<?php foreach ($barter_list as $row) : ?>
+          <tr>
+            <td><img src="<?php echo FILE_IMG.$row['image_id'] ?>" class="image"></td>
+            <td><?php echo $row['name'] ?></td>
+            <td>
+              <form method="post"></form>
+            </td>
+          </tr>
+<?php endforeach; ?>
+        </table>
+        </p>
         <a class="js-modal-close" href="">閉じる</a>
       </div>
       <!--modal__inner-->
