@@ -9,17 +9,8 @@
 </head>
 
 <body>
-  <header>
-    <h1>
-      <a>BarterAgain</a>
-    </h1>
-    <nav>
-      <ul class="hr_ul">
-        <li><a>カテゴリー</a></li>
-        <li><a>マイページ</a></li>
-      </ul>
-    </nav>
-  </header>
+  <!--ヘッダー-->
+<?php require_once '../tpl/layout/header.php'; ?>
 
   <div id="B">
     <br><br>

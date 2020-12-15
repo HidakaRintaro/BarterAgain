@@ -13,17 +13,8 @@
 </head>
 
 <body>
-  <header>
-    <h1>
-      <a>BarterAgain</a>
-    </h1>
-    <nav>
-      <ul id="hr_ul">
-        <li><a>カテゴリー</a></li>
-        <li><a href="../customer/my_pege.php">マイページ</a></li>
-      </ul>
-    </nav>
-  </header>
+  <!--ヘッダー-->
+<?php require_once '../tpl/layout/header.php'; ?>
   ​
   <div id="B">
     <br><br>
@@ -90,24 +81,19 @@
     <div class="modal js-modal">
       <div class="modal__bg js-modal-close"></div>
       <div class="modal__content">
-        <p>
-        <table>
+        <p>交換する商品を選択</p>
 <?php foreach ($barter_list as $row) : ?>
-          <tr>
-            <td><img src="<?php echo FILE_IMG.$row['image_id'] ?>" class="image"></td>
-            <td><?php echo $row['name'] ?></td>
-            <td>
-              <form method="post"></form>
-            </td>
-          </tr>
+        <div class="modal_body">
+          <p><img src="<?php echo FILE_IMG.$row['image_id'] ?>" class="image"></p>
+          <p><?php echo $row['name'] ?></p>
+          <p>
+            <form method="post"></form>
+          </p>
+        </div>
 <?php endforeach; ?>
-        </table>
-        </p>
-        <a class="js-modal-close" href="">閉じる</a>
-      </div>
-      <!--modal__inner-->
-    </div>
-    <!--modal-->
+        <a class="js-modal-close closeModal" href="">閉じる</a>
+      </div><!--modal__inner-->
+    </div><!--modal-->
     ​
     <tr>
       <td colspan="2">

@@ -11,17 +11,8 @@
 </head>
 
 <body>
-  <header>
-    <h1>
-      <a>BarterAgain</a>
-    </h1>
-    <nav>
-      <ul id="hr_ul">
-        <li><a>カテゴリー</a></li>
-        <li><a href="../customer/my_pege.php">マイページ</a></li>
-      </ul>
-    </nav>
-  </header>
+  <!--ヘッダー-->
+<?php require_once '../tpl/layout/header.php'; ?>
 
   <div id="B">
     <br><br>
