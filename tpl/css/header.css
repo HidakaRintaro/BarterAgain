@@ -67,3 +67,8 @@ footer {
 .footer-text {
   color: #fff;
 }
+
+/* none */
+.none {
+  display: none;
+}
