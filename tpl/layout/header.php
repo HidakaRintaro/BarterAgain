@@ -8,7 +8,7 @@
       <li><a>カテゴリー</a></li>
       <li><a href="../customer/my_pege.php">マイページ</a></li>
       <!-- ログアウト処理 -->
-      <li><a href="">ログアウト</a></li>
+      <li><a href="?logout=on">ログアウト</a></li>
     </ul>
   </nav>
 </header>
