@@ -14,19 +14,9 @@
   <!--ヘッダー-->
 <?php require_once '../tpl/layout/header.php'; ?>
 
-  <div id="B">
-    <br><br>
-    <form action="#" method="GET">
-      <div id="B1">
-        <p><input type="text" placeholder="キーワードを入力" name="search">
-          <button type="submit" name="serch_btn">検索</button></p>
-      </div>
-    </form>
-  </div>
-
   <!-- 商品登録 -->
-  <h2>商品登録</h2>
   <form method="post" enctype="multipart/form-data">
+    <h2>商品登録</h2>
     <h3>商品画像</h3>
     <p><input type="file" name="product_img"></p>
 

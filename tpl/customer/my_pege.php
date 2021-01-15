@@ -15,23 +15,11 @@
   <!--ヘッダー-->
 <?php require_once '../tpl/layout/header.php'; ?>
 
-  <div id="B">
-    <br><br>
-    <form action="#" method="GET">
-      <div id="B1">
-        <p><input type="text" placeholder="キーワードを入力" name="search">
-          <button type="submit">検索</button></p>
-      </div>
-    </form>
-  </div>
-
-
-
   <div id="my_img">
     <table>
       <tr>
         <td><a><img src="../tpl/img/my_pege/my1.JPG"></a>　</td>
-        <td><a><img src="../tpl/img/my_pege/my2.JPG"></a>　</td>
+        <td><a href="../customer/edit.php"><img src="../tpl/img/my_pege/my2.JPG"></a>　</td>
         <td><a><img src="../tpl/img/my_pege/my3.JPG"></a>　</td>
       </tr>
       <tr>

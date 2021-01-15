@@ -16,16 +16,6 @@
   <!--ヘッダー-->
 <?php require_once '../tpl/layout/header.php'; ?>
 
-  <div id="B">
-    <br><br>
-    <form action="#" method="GET">
-      <div id="B1">
-        <p><input type="text" placeholder="キーワードを入力" name="search">
-          <button type="submit">検索</button></p>
-      </div>
-    </form>
-  </div>
-
   <!-- いいね一覧 -->
   <br>
   <h2>いいね一覧</h2>

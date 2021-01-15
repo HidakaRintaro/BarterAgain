@@ -4,6 +4,9 @@ require_once '../const.php';
 require_once '../func/func.php';
 require_once '../func/func_db.php';
 
+// ログアウトチェック。セッションの削除
+if ( !empty($_GET) && $_GET['logout'] == 'on' ) discard_login_session();
+
 // ログインセッションを破棄
 discard_login_session();
 
@@ -81,7 +84,7 @@ if ( !empty($_POST) && $_POST['signup_btn'] === 'sing_up' ) {
       'solt'               => [ 'value'=> $enc_arr[0], 'type' => 's' ], 
       'hash_cnt'           => [ 'value'=> $enc_arr[1], 'type' => 'i' ]
     ];
-    run_insert($link, 'password_info', $params);
+    run_insert($link, 'password_info', $insert_sql);
     get_close($link);
 
     save_login_session($id);

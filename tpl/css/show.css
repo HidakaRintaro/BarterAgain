@@ -118,3 +118,18 @@ img {
   max-width: 200px;
   max-height: 200px;
 }
+
+.status2 .content {
+  margin: 0 auto;
+}
+.status2 .modal{
+  display: none;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+.status2 .modal_body {
+  display:block;
+}

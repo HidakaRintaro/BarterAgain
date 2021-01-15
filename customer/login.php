@@ -4,6 +4,9 @@ require_once '../const.php';
 require_once '../func/func.php';
 require_once '../func/func_db.php';
 
+// ログアウトチェック。セッションの削除
+if ( !empty($_GET) && $_GET['logout'] == 'on' ) discard_login_session();
+
 // ログインセッションを破棄
 discard_login_session();
 

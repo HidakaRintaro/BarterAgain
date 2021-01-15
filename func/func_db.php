@@ -9,7 +9,7 @@
  */
 function get_connect() {
   $link = mysqli_connect(HOST, USER_ID, PASS, DB_NAME);
-  is_connect_normal($link);
+  mysqli_set_charset($link, 'utf8');
   mysqli_set_charset($link, 'utf8');
   return $link;
 }
