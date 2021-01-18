@@ -34,7 +34,7 @@ $btn_status = 1;
 
 $transaction = null;
 $select_sql = [
-  'column' => ['id', 'exhibit_product_id'], 
+  'column' => ['id', 'exhibit_product_id', 'barter_product_id'], 
   'where' => ['exhibit_id = ?' => [$customer_id], 'barter_product_id = ?' => [$product_id]]
 ];
 $transaction = run_select($link, 'v_notice1', $select_sql);
@@ -48,6 +48,7 @@ if ($btn_status == 1) {
   $btn_status = !empty(run_select($link, 'product', $select_sql)) ? 3 : 1 ;
 } else {
   $exhibit_product = $transaction[0]['exhibit_product_id'];
+  $barter_product = $transaction[0]['barter_product_id'];
 }
 
 
@@ -65,9 +66,10 @@ if ( !empty($_POST['request_btn']) ) {
       'status'     => ['value' => 1,                   'type' => 'i']
     ];
     run_insert($link, 'transaction', $insert_sql);
+
   } elseif ( $_POST['request_btn'] == 'ok' ) {
     $update_sql = [
-      'status' => ['valu, e' => 2, 'type' => 'i'], 
+      'status' => ['value' => 2, 'type' => 'i'], 
       'where'  => ['id = ?' => [$transaction_id]]
     ];
     run_update($link, 'transaction', $update_sql);
@@ -77,12 +79,14 @@ if ( !empty($_POST['request_btn']) ) {
       'where'     => ['id IN (?, ?)' => [$post['exhiibit'], $post['barter']]]
     ];
     run_update($link, 'product', $update_sql);
+    
   } elseif ( $_POST['request_btn'] == 'ng' ) {
     $update_sql = [
       'status' => ['value' => 3, 'type' => 'i'], 
       'where'  => ['id = ?' => [$transaction_id]]
     ];
     run_update($link, 'transaction', $update_sql);
+
   }
   
   header('location: ./index.php');
@@ -117,7 +121,7 @@ if ( !empty($_POST['post_btn']) && $_POST['post_btn'] == 'post_btn' ) {
   // バリデーションエラーが無い時、DBにコメントをINSERTする
   if ( !empty($class) ) {
     $comment = $_POST['comment'];
-    
+  
     $select_sql = [
       'column' => ['no'],
       'where'  => ['customer_id = ?' => [$customer_id]]
