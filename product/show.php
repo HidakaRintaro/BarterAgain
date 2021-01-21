@@ -76,7 +76,7 @@ if ( !empty($_POST['request_btn']) ) {
     $update_sql = [];
     $update_sql = [
       'is_active' => ['value' => 1, 'type' => 'i'], 
-      'where'     => ['id IN (?, ?)' => [$post['exhiibit'], $post['barter']]]
+      'where'     => ['id IN (?, ?)' => [$post['exhibit'], $post['barter']]]
     ];
     run_update($link, 'product', $update_sql);
     
@@ -172,7 +172,10 @@ $select_sql = [];
 if ( $btn_status == 1 ) {
   $select_sql = [
     'column' => [ 'id', 'name', 'image_id' ], 
-    'where'  => [ 'customer_id = ?' => [ $customer_id ] ]
+    'where'  => [ 
+      'customer_id = ?' => [ $customer_id ], 
+      'is_active = ?'   => [ 0 ]
+    ]
   ];
   $barter_list = run_select($link, 'product', $select_sql);
 } elseif ( $btn_status == 2 ) {
